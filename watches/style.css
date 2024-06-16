@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
+
+:root {
+    --header-height: 3.5rem;
+    --white-color: hsl(0,0%,100%);
+    --black-color: hsl(0, 0%, 0%);
+    --button-bg-color: var(--white-color); /* Define button background color */
+    --button-text-color: var(--purple-color); /* Define button text color */
+    --body-font:"PT Serif", serif;
+    --biggest-font-size: 2rem;
+    --big-font-size: 1.5rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --font-regular: 400;
+    --font-bold: 700;
+    --z-tooltip: 10; /* when mouse is hovered it will show the text */
+    --z-fixed: 100;
+}
+
+@media screen and (min-width: 1150px) {
+    :root {
+        --biggest-font-size: 4rem;
+        --big-font-size: 3rem;
+        --h3-font-size: 1.5rem;
+        --normal-font-size: 1rem;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+*::after {
+    content: none !important;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--white-color);
+}
+
+img {
+    display: flex;
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+}
+
+.main {
+    overflow: hidden;
+}
+/*HEADER & NAV*/
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: var(--z-fixed);
+}
+.nav {
+    position: relative;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav__logo {
+    color: var(--white-color);
+    font-weight: var(--biggest-font-size);
+}
+.nav__toggle,
+.nav__close {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+/* NAVIGATION FOR MOBILE DEVICES */
+@media screen and (max-width: 1150px) {
+    .nav__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        background-color: hsla(0, 0%, 100%, .1);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        width: 80%;
+        height: 100%;
+        padding: 6rem 3rem 0;
+        transition: right .4s;
+    }
+}
+
+.nav__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.nav__link {
+    color: var(--white-color);
+    font-weight: var(--font-semi-bold);
+}
+
+.nav__link:hover {
+    text-decoration: underline;
+    color: rgb(250, 9, 174);
+}
+
+.nav__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.show-menu {
+    right: 0;
+}
+/* FOR LARGER DEVICES */
+@media screen and (min-width: 1150px) {
+    .container {
+        margin-inline: auto;
+    }
+
+    .nav {
+       padding-top: 3rem;
+       height: calc(var(--header-height) + 2rem);
+    }
+    .nav__toggle,
+    .nav__close {
+        display: none;
+    }
+    .nav__menu {
+        width: initial;
+    }
+    .nav__list {
+        flex-direction: row;
+        column-gap: 4rem;
+    }
+    .home__data {
+        text-align: flex-start;
+       
+    }
+    .home__subtitle {
+        margin-bottom: 1rem;
+       
+      
+    }
+   
+    
+    .home__title {
+        margin-bottom: 4.5rem;
+    }
+    .home__content {
+        max-width: 1120px;
+        margin-inline: auto;
+        left: 0;
+        right: 0;
+    }
+    .home__social {
+        left: 0;
+        padding-bottom: 2rem;
+    }
+    .swiper-pagination {
+        top: 10rem;
+    }
+    .swiper-pagination-total {
+        font-size: 1.5rem;
+    }
+    .swiper-navigation {
+        right: 1.5rem;
+        bottom: 1.5rem;
+        column-gap: 3.5rem;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+        font-size: 3rem;
+    }
+}  
+/* HOME */
+.home__swiper {
+    position: relative;
+    z-index: var(--z-tooltip);
+}
+
+.home__article {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Flexbox container */
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    overflow: hidden; /* Ensure content does not overflow */
+}
+
+.home__img,
+.home__shadow,
+.home__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.home__img {
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+}
+
+.home__shadow {
+    background-color: hsla(0, 0%, 0%, .05);
+    z-index: -1;
+}
+
+.home__data {
+    padding-top: 6rem;
+    text-align: center;
+    position: relative; /* Ensure content is above the image */
+    z-index: 1;
+}
+
+.home__subtitle {
+    padding-top: 5rem;
+    font-size: var(--h3-font-size);
+    margin-bottom: .5rem;
+    text-align: right;
+}
+
+.home__title {
+    font-size: var(--biggest-font-size);
+    margin-bottom: 2.5rem;
+    font-weight: var(--font-bold);
+    text-align: right;
+}
+
+
+
+.home__social {
+    position: absolute;
+    z-index: var(--z-tooltip);
+    left: 1.5rem;
+    bottom: 4rem;
+    display: grid;
+    row-gap: 1.5rem;
+}
+
+.home__social-link {
+    color: var(--white-color);
+    font-size: 1.5rem;
+} 
+/* SWIPER */
+.swiper {
+    height: 100vh;
+    position: relative; /* Ensure it is positioned relative */
+}
+
+.swiper-pagination {
+    width: initial;
+    height: max-content;
+    top: 6rem;
+    left: initial;
+    right: 4rem;
+    font-size: var(--big-font-size);
+    font-weight: var(--font-semi-bold);
+    display: flex;
+    column-gap: .25rem;
+    align-items: center;
+}
+
+.swiper-pagination-total {
+    font-size: var(--normal-font-size);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    content: '';
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+font-size: 2rem;
+color: var(--white-color);
+width: initial;
+height: initial;
+outline: none;
+position: absolute; /* Ensure absolute positioning */
+align-items: center;
+}
+
+.swiper-navigation {
+    position: absolute;
+    z-index: var(--z-tooltip);
+    bottom: 4rem;
+    right: 1.5rem;
+    display: flex;
+    column-gap: 2.5rem;
+    padding-right: 8rem;
+    padding-bottom: 5rem;
+}
+
+@media screen and (min-width: 1150px) {
+    .swiper-pagination {
+        top: 10rem;
+    }
+    .swiper-pagination-total {
+        font-size: 1.5rem;
+    }
+    .swiper-navigation {
+        right: 1.5rem;
+        bottom: 1.5rem;
+        column-gap: 3.5rem;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+        font-size: 3rem;
+    }
+} 
+/* FOR MEDIUM DEVICES */
+@media screen and (min-width: 760px) {
+    .nav__menu {
+        width: 50%;
+    }
+}
